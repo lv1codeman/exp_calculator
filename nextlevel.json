@@ -1,0 +1,318 @@
+[
+  {
+    "lvl": 1,
+    "nextlvl": 400
+  },
+  {
+    "lvl": 2,
+    "nextlvl": 500
+  },
+  {
+    "lvl": 3,
+    "nextlvl": 600
+  },
+  {
+    "lvl": 4,
+    "nextlvl": 1100
+  },
+  {
+    "lvl": 5,
+    "nextlvl": 1200
+  },
+  {
+    "lvl": 6,
+    "nextlvl": 1300
+  },
+  {
+    "lvl": 7,
+    "nextlvl": 1400
+  },
+  {
+    "lvl": 8,
+    "nextlvl": 1500
+  },
+  {
+    "lvl": 9,
+    "nextlvl": 1600
+  },
+  {
+    "lvl": 10,
+    "nextlvl": 1600
+  },
+  {
+    "lvl": 11,
+    "nextlvl": 1650
+  },
+  {
+    "lvl": 12,
+    "nextlvl": 1650
+  },
+  {
+    "lvl": 13,
+    "nextlvl": 1700
+  },
+  {
+    "lvl": 14,
+    "nextlvl": 1700
+  },
+  {
+    "lvl": 15,
+    "nextlvl": 1700
+  },
+  {
+    "lvl": 16,
+    "nextlvl": 1750
+  },
+  {
+    "lvl": 17,
+    "nextlvl": 1750
+  },
+  {
+    "lvl": 18,
+    "nextlvl": 1800
+  },
+  {
+    "lvl": 19,
+    "nextlvl": 1800
+  },
+  {
+    "lvl": 20,
+    "nextlvl": 2300
+  },
+  {
+    "lvl": 21,
+    "nextlvl": 2400
+  },
+  {
+    "lvl": 22,
+    "nextlvl": 2500
+  },
+  {
+    "lvl": 23,
+    "nextlvl": 2500
+  },
+  {
+    "lvl": 24,
+    "nextlvl": 2500
+  },
+  {
+    "lvl": 25,
+    "nextlvl": 2700
+  },
+  {
+    "lvl": 26,
+    "nextlvl": 2900
+  },
+  {
+    "lvl": 27,
+    "nextlvl": 3000
+  },
+  {
+    "lvl": 28,
+    "nextlvl": 3200
+  },
+  {
+    "lvl": 29,
+    "nextlvl": 3400
+  },
+  {
+    "lvl": 30,
+    "nextlvl": 6500
+  },
+  {
+    "lvl": 31,
+    "nextlvl": 6700
+  },
+  {
+    "lvl": 32,
+    "nextlvl": 6800
+  },
+  {
+    "lvl": 33,
+    "nextlvl": 7200
+  },
+  {
+    "lvl": 34,
+    "nextlvl": 7600
+  },
+  {
+    "lvl": 35,
+    "nextlvl": 8000
+  },
+  {
+    "lvl": 36,
+    "nextlvl": 8400
+  },
+  {
+    "lvl": 37,
+    "nextlvl": 9000
+  },
+  {
+    "lvl": 38,
+    "nextlvl": 9600
+  },
+  {
+    "lvl": 39,
+    "nextlvl": 10000
+  },
+  {
+    "lvl": 40,
+    "nextlvl": 10200
+  },
+  {
+    "lvl": 41,
+    "nextlvl": 10400
+  },
+  {
+    "lvl": 42,
+    "nextlvl": 10600
+  },
+  {
+    "lvl": 43,
+    "nextlvl": 10800
+  },
+  {
+    "lvl": 44,
+    "nextlvl": 11200
+  },
+  {
+    "lvl": 45,
+    "nextlvl": 11600
+  },
+  {
+    "lvl": 46,
+    "nextlvl": 12000
+  },
+  {
+    "lvl": 47,
+    "nextlvl": 12400
+  },
+  {
+    "lvl": 48,
+    "nextlvl": 12800
+  },
+  {
+    "lvl": 49,
+    "nextlvl": 13000
+  },
+  {
+    "lvl": 50,
+    "nextlvl": 13100
+  },
+  {
+    "lvl": 51,
+    "nextlvl": 13300
+  },
+  {
+    "lvl": 52,
+    "nextlvl": 13500
+  },
+  {
+    "lvl": 53,
+    "nextlvl": 13700
+  },
+  {
+    "lvl": 54,
+    "nextlvl": 13900
+  },
+  {
+    "lvl": 55,
+    "nextlvl": 14100
+  },
+  {
+    "lvl": 56,
+    "nextlvl": 14300
+  },
+  {
+    "lvl": 57,
+    "nextlvl": 14500
+  },
+  {
+    "lvl": 58,
+    "nextlvl": 14700
+  },
+  {
+    "lvl": 59,
+    "nextlvl": 15700
+  },
+  {
+    "lvl": 60,
+    "nextlvl": 21600
+  },
+  {
+    "lvl": 61,
+    "nextlvl": 21900
+  },
+  {
+    "lvl": 62,
+    "nextlvl": 22300
+  },
+  {
+    "lvl": 63,
+    "nextlvl": 23000
+  },
+  {
+    "lvl": 64,
+    "nextlvl": 23800
+  },
+  {
+    "lvl": 65,
+    "nextlvl": 24700
+  },
+  {
+    "lvl": 66,
+    "nextlvl": 26100
+  },
+  {
+    "lvl": 67,
+    "nextlvl": 27500
+  },
+  {
+    "lvl": 68,
+    "nextlvl": 29400
+  },
+  {
+    "lvl": 69,
+    "nextlvl": 29400
+  },
+  {
+    "lvl": 70,
+    "nextlvl": 32400
+  },
+  {
+    "lvl": 71,
+    "nextlvl": 32800
+  },
+  {
+    "lvl": 72,
+    "nextlvl": 33500
+  },
+  {
+    "lvl": 73,
+    "nextlvl": 34500
+  },
+  {
+    "lvl": 74,
+    "nextlvl": 35600
+  },
+  {
+    "lvl": 75,
+    "nextlvl": 37200
+  },
+  {
+    "lvl": 76,
+    "nextlvl": 39100
+  },
+  {
+    "lvl": 77,
+    "nextlvl": 41300
+  },
+  {
+    "lvl": 78,
+    "nextlvl": 44100
+  },
+  {
+    "lvl": 79,
+    "nextlvl": 47300
+  }
+]
