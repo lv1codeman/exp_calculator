@@ -53,7 +53,7 @@ onMounted(async () => {
 
 <template>
   <div class="container">
-    57 13835 60 <br />
+    57 13835 60<br />
     目前聯覺等級
     <el-input
       v-model="userLVL"
