@@ -98,11 +98,13 @@ onMounted(async () => {
     </div>
     <!-- <RouterView /> -->
 
-    <el-card v-show="showres" style="max-width: 480px">
-      <p>還差{{ lvlsToTarget }}等達到目標等級</p>
-      <p>還差多少經驗到目標等級: {{ expsToTarget }}經驗值</p>
-      <p>還差幾天可以達到目標等級: {{ daysToTarget }}天</p>
-    </el-card>
+    <div class="row">
+      <el-card v-show="showres" style="max-width: 480px">
+        <p>還差{{ lvlsToTarget }}等達到目標等級</p>
+        <p>還差多少經驗到目標等級: {{ expsToTarget }}經驗值</p>
+        <p>還差幾天可以達到目標等級: {{ daysToTarget }}天</p>
+      </el-card>
+    </div>
   </div>
 </template>
 
