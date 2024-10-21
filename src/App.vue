@@ -5,6 +5,7 @@ const userLVL = ref('')
 const userEXP = ref('')
 const tarLVL = ref('')
 const res = ref('aaa')
+const showres = ref('false')
 
 const daysToTarget = ref('')
 const expsToTarget = ref('')
@@ -12,6 +13,13 @@ const lvlsToTarget = ref('')
 
 const jsonData = ref(null)
 // var jdata = null
+const btnClear = () => {
+  userLVL.value = ''
+  userEXP.value = ''
+  tarLVL.value = ''
+  showres.value = false
+}
+
 const btnCalculate = () => {
   var user_level = parseInt(userLVL.value)
   var user_exp = parseInt(userEXP.value)
@@ -38,6 +46,8 @@ const btnCalculate = () => {
   lvlsToTarget.value = needloop + 1
   res.value =
     parseInt(userLVL.value) + parseInt(userEXP.value) + parseInt(tarLVL.value)
+
+  showres.value = true
 }
 
 // let jsonData = null
@@ -53,36 +63,42 @@ onMounted(async () => {
 
 <template>
   <div class="container">
-    57 13835 60<br />
-    目前聯覺等級
-    <el-input
-      v-model="userLVL"
-      style="width: 240px"
-      placeholder="目前聯覺等級"
-      clearable
-    />
-    <br />
-    目前聯覺經驗
-    <el-input
-      v-model="userEXP"
-      style="width: 240px"
-      placeholder="目前聯覺經驗"
-      clearable
-    />
-    <br />
-    目標聯覺等級
-    <el-input
-      v-model="tarLVL"
-      style="width: 240px"
-      placeholder="目標聯覺等級"
-      clearable
-    />
-    <br />
-    <el-button type="primary" @click="btnCalculate">開始計算</el-button>
-
+    ***沒做防呆，請輸入合理的數字*** <br />
+    例如：57 13835 60 現在57等，經驗值是13835，想知道和60等的差距
+    <div class="row">
+      目前聯覺等級
+      <el-input
+        v-model="userLVL"
+        style="width: 240px"
+        placeholder="請輸入目前聯覺等級"
+        clearable
+      />
+    </div>
+    <div class="row">
+      目前聯覺經驗
+      <el-input
+        v-model="userEXP"
+        style="width: 240px"
+        placeholder="請輸入目前聯覺經驗"
+        clearable
+      />
+    </div>
+    <div class="row">
+      目標聯覺等級
+      <el-input
+        v-model="tarLVL"
+        style="width: 240px"
+        placeholder="請輸入目標聯覺等級"
+        clearable
+      />
+    </div>
+    <div class="row">
+      <el-button type="primary" @click="btnCalculate">開始計算</el-button>
+      <el-button type="warning" @click="btnClear">清空</el-button>
+    </div>
     <!-- <RouterView /> -->
 
-    <el-card style="max-width: 480px">
+    <el-card v-show="showres" style="max-width: 480px">
       <p>還差{{ lvlsToTarget }}等達到目標等級</p>
       <p>還差多少經驗到目標等級: {{ expsToTarget }}經驗值</p>
       <p>還差幾天可以達到目標等級: {{ daysToTarget }}天</p>
@@ -102,5 +118,9 @@ body {
 }
 .container {
   padding: 100px;
+}
+
+.row {
+  padding: 5px;
 }
 </style>
