@@ -53,8 +53,6 @@ onMounted(async () => {
 
 <template>
   <div class="container">
-    按下按鈕後讀取json的資料運算
-    <br />
     57 13835 60 <br />
     目前聯覺等級
     <el-input
