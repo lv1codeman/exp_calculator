@@ -1,11 +1,11 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { onMounted } from 'vue'
-const userLVL = ref('')
-const userEXP = ref('')
-const tarLVL = ref('')
+const userLVL = ref(1)
+const userEXP = ref(0)
+const tarLVL = ref(60)
 const res = ref('aaa')
-const showres = ref('false')
+const showres = ref(false)
 
 const daysToTarget = ref('')
 const expsToTarget = ref('')
@@ -13,10 +13,38 @@ const lvlsToTarget = ref('')
 
 const jsonData = ref(null)
 // var jdata = null
+
+// const value = ref([30, 60])
+const marks = reactive({
+  1: '1',
+  10: '10',
+  20: '20',
+  30: '30',
+  40: '40',
+  50: '50',
+  // 60: '60',
+  70: '70',
+  79: '79',
+  60: {
+    style: {
+      color: '#1989FA',
+    },
+    label: '60',
+  },
+})
+const exp_marks = reactive({
+  0: '0',
+  10000: '10000',
+  20000: '20000',
+  30000: '30000',
+  40000: '40000',
+  47300: '47300',
+})
+
 const btnClear = () => {
-  userLVL.value = ''
-  userEXP.value = ''
-  tarLVL.value = ''
+  userLVL.value = 1
+  userEXP.value = 0
+  tarLVL.value = 60
   showres.value = false
 }
 
@@ -63,41 +91,40 @@ onMounted(async () => {
 
 <template>
   <div class="container">
-    ****沒做防呆，請輸入合理的數字**** <br />
-    例如：57 13835 60 現在57等，經驗值是13835，想知道和60等的差距
     <div class="row">
-      目前聯覺等級
-      <el-input
+      <div class="label">目前聯覺等級</div>
+      <el-slider
         v-model="userLVL"
-        style="width: 240px"
-        placeholder="請輸入目前聯覺等級"
-        clearable
+        :min="1"
+        :max="79"
+        show-input
+        :marks="marks"
       />
     </div>
     <div class="row">
-      目前聯覺經驗
-      <el-input
+      <div class="label">目前聯覺經驗</div>
+      <el-slider
         v-model="userEXP"
-        style="width: 240px"
-        placeholder="請輸入目前聯覺經驗"
-        clearable
+        :min="0"
+        :max="47300"
+        show-input
+        :marks="exp_marks"
       />
     </div>
     <div class="row">
-      目標聯覺等級
-      <el-input
+      <div class="label">目標聯覺等級</div>
+      <el-slider
         v-model="tarLVL"
-        style="width: 240px"
-        placeholder="請輸入目標聯覺等級"
-        clearable
+        :min="1"
+        :max="79"
+        show-input
+        :marks="marks"
       />
     </div>
     <div class="row">
       <el-button type="primary" @click="btnCalculate">開始計算</el-button>
       <el-button type="warning" @click="btnClear">清空</el-button>
     </div>
-    <!-- <RouterView /> -->
-
     <div class="row">
       <el-card v-show="showres" style="max-width: 480px">
         <p>還差{{ lvlsToTarget }}等達到目標等級</p>
@@ -120,9 +147,42 @@ body {
 }
 .container {
   padding: 100px;
+  /* background-color: rgb(233, 233, 233); */
 }
 
 .row {
-  padding: 5px;
+  /* display: flex; */
+  padding: 10px 0;
 }
+.row > .label {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.el-slider {
+  width: 50%;
+  padding-left: 10px;
+}
+
+/* 滑過的地方 */
+:deep(.el-slider__bar) {
+  /* background-color: rgb(0, 53, 83); */
+}
+/* 背景BAR顏色 */
+:deep(.el-slider__runway.show-input) {
+  /* background-color: rgb(61, 135, 179); */
+  background-color: #bfc0c4;
+}
+/* 節點顏色 */
+:deep(.el-slider__stop.el-slider__marks-stop) {
+  /* background-color: rgb(0, 98, 155); */
+  background-color: #ececec;
+}
+
+/* .row > .input {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+} */
 </style>
