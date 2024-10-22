@@ -53,7 +53,7 @@ const btnCalculate = () => {
 // let jsonData = null
 onMounted(async () => {
   try {
-    const response = await fetch('nextlevel.json')
+    const response = await fetch(`${import.meta.env.BASE_URL}/nextlevel.json`)
     jsonData.value = await response.json()
   } catch (error) {
     console.error('Error fetching JSON:', error)
@@ -63,7 +63,7 @@ onMounted(async () => {
 
 <template>
   <div class="container">
-    ***沒做防呆，請輸入合理的數字*** <br />
+    ****沒做防呆，請輸入合理的數字**** <br />
     例如：57 13835 60 現在57等，經驗值是13835，想知道和60等的差距
     <div class="row">
       目前聯覺等級
