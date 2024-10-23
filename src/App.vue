@@ -81,6 +81,7 @@ const btnCalculate = () => {
 // let jsonData = null
 onMounted(async () => {
   try {
+    // const response = await fetch('nextlevel.json')
     const response = await fetch(`${import.meta.env.BASE_URL}/nextlevel.json`)
     jsonData.value = await response.json()
   } catch (error) {
@@ -91,6 +92,18 @@ onMounted(async () => {
 
 <template>
   <div class="container">
+    <li>
+      索拉指南活耀度獎勵2000exp + 體力獎勵1800exp =
+      3800exp(每日可穩定取得的聯覺經驗)
+    </li>
+    <li>
+      <a
+        href="https://www.wandoujia.com/apps/8334814/5413317407552284694.html"
+        target="_blank"
+        >聯覺經驗表來源</a
+      >
+    </li>
+    <li>暫不支援手機端使用，有空再說</li>
     <div class="row">
       <div class="label">目前聯覺等級</div>
       <el-slider
@@ -127,9 +140,19 @@ onMounted(async () => {
     </div>
     <div class="row">
       <el-card v-show="showres" style="max-width: 480px">
-        <p>還差{{ lvlsToTarget }}等達到目標等級</p>
-        <p>還差多少經驗到目標等級: {{ expsToTarget }}經驗值</p>
-        <p>還差幾天可以達到目標等級: {{ daysToTarget }}天</p>
+        <p>
+          還差<span class="resText">{{ lvlsToTarget }}</span
+          >等達到目標等級
+        </p>
+        <p>
+          還差多少經驗到目標等級: <span class="resText">{{ expsToTarget }}</span
+          >經驗值
+        </p>
+        <p>
+          還差幾天可以達到目標等級:
+          <span class="resText">{{ daysToTarget }}</span
+          >天
+        </p>
       </el-card>
     </div>
   </div>
@@ -146,7 +169,7 @@ body {
   margin: 10px;
 }
 .container {
-  padding: 100px;
+  padding: 50px 100px;
   /* background-color: rgb(233, 233, 233); */
 }
 
@@ -185,4 +208,8 @@ body {
   align-items: center;
   margin-left: 5px;
 } */
+
+.resText {
+  color: rgb(197, 56, 0);
+}
 </style>
