@@ -6,10 +6,15 @@ const userEXP = ref(0)
 const tarLVL = ref(60)
 const res = ref('aaa')
 const showres = ref(false)
+const showres2 = ref(false)
 
 const daysToTarget = ref('')
 const expsToTarget = ref('')
 const lvlsToTarget = ref('')
+
+const goldnum = ref(0)
+const purplenum = ref(0)
+const bluenum = ref(0)
 
 const jsonData = ref(null)
 // var jdata = null
@@ -41,13 +46,6 @@ const exp_marks = reactive({
   47300: '47300',
 })
 
-const btnClear = () => {
-  userLVL.value = 1
-  userEXP.value = 0
-  tarLVL.value = 60
-  showres.value = false
-}
-
 const btnCalculate = () => {
   var user_level = parseInt(userLVL.value)
   var user_exp = parseInt(userEXP.value)
@@ -78,6 +76,23 @@ const btnCalculate = () => {
   showres.value = true
 }
 
+const btnClear = () => {
+  userLVL.value = 1
+  userEXP.value = 0
+  tarLVL.value = 60
+  showres.value = false
+}
+
+const btnCalculate2 = () => {
+  bluenum.value = Math.floor(form.green / 3) + form.blue
+  purplenum.value = Math.floor(bluenum.value / 3) + form.purple
+  goldnum.value = Math.floor(purplenum.value / 3) + form.gold
+  showres2.value = true
+}
+
+const btnClear2 = () => {
+  showres2.value = false
+}
 // let jsonData = null
 onMounted(async () => {
   try {
@@ -88,73 +103,139 @@ onMounted(async () => {
     console.error('Error fetching JSON:', error)
   }
 })
+
+const form = reactive({
+  green: 188,
+  blue: 155,
+  purple: 44,
+  gold: 3,
+})
+// const form = reactive({
+//   green: 0,
+//   blue: 0,
+//   purple: 0,
+//   gold: 0,
+// })
 </script>
 
 <template>
   <div class="container">
-    <li>
-      索拉指南活耀度獎勵2000exp + 體力獎勵1800exp =
-      3800exp(每日可穩定取得的聯覺經驗)
-    </li>
-    <li>
-      <a
-        href="https://www.wandoujia.com/apps/8334814/5413317407552284694.html"
-        target="_blank"
-        >聯覺經驗表來源</a
-      >
-    </li>
-    <li>暫不支援手機端使用，有空再說</li>
-    <div class="row">
-      <div class="label">目前聯覺等級</div>
-      <el-slider
-        v-model="userLVL"
-        :min="1"
-        :max="79"
-        show-input
-        :marks="marks"
-      />
-    </div>
-    <div class="row">
-      <div class="label">目前聯覺經驗</div>
-      <el-slider
-        v-model="userEXP"
-        :min="0"
-        :max="47300"
-        show-input
-        :marks="exp_marks"
-      />
-    </div>
-    <div class="row">
-      <div class="label">目標聯覺等級</div>
-      <el-slider
-        v-model="tarLVL"
-        :min="1"
-        :max="79"
-        show-input
-        :marks="marks"
-      />
-    </div>
-    <div class="row">
-      <el-button type="primary" @click="btnCalculate">開始計算</el-button>
-      <el-button type="warning" @click="btnClear">清空</el-button>
-    </div>
-    <div class="row">
-      <el-card v-show="showres" style="max-width: 480px">
-        <p>
-          還差<span class="resText">{{ lvlsToTarget }}</span
-          >等達到目標等級
-        </p>
-        <p>
-          還差多少經驗到目標等級: <span class="resText">{{ expsToTarget }}</span
-          >經驗值
-        </p>
-        <p>
-          還差幾天可以達到目標等級:
-          <span class="resText">{{ daysToTarget }}</span
-          >天
-        </p>
-      </el-card>
-    </div>
+    <el-tabs type="border-card">
+      <el-tab-pane label="聯覺經驗計算機">
+        <li>
+          索拉指南活耀度獎勵2000exp + 體力獎勵1800exp =
+          3800exp(每日可穩定取得的聯覺經驗)
+        </li>
+        <li>
+          <a
+            href="https://www.wandoujia.com/apps/8334814/5413317407552284694.html"
+            target="_blank"
+            >聯覺經驗表來源</a
+          >
+        </li>
+        <li>暫不支援手機端使用，有空再說</li>
+        <div class="row">
+          <div class="label">目前聯覺等級</div>
+          <el-slider
+            v-model="userLVL"
+            :min="1"
+            :max="79"
+            show-input
+            :marks="marks"
+          />
+        </div>
+        <div class="row">
+          <div class="label">目前聯覺經驗</div>
+          <el-slider
+            v-model="userEXP"
+            :min="0"
+            :max="47300"
+            show-input
+            :marks="exp_marks"
+          />
+        </div>
+        <div class="row">
+          <div class="label">目標聯覺等級</div>
+          <el-slider
+            v-model="tarLVL"
+            :min="1"
+            :max="79"
+            show-input
+            :marks="marks"
+          />
+        </div>
+        <div class="row">
+          <el-button type="primary" @click="btnCalculate">開始計算</el-button>
+          <el-button type="warning" @click="btnClear">清空</el-button>
+        </div>
+        <div class="row">
+          <el-card v-show="showres" style="max-width: 480px">
+            <p>
+              還差<span class="resText">{{ lvlsToTarget }}</span
+              >等達到目標等級
+            </p>
+            <p>
+              還差多少經驗到目標等級:
+              <span class="resText">{{ expsToTarget }}</span
+              >經驗值
+            </p>
+            <p>
+              還差幾天可以達到目標等級:
+              <span class="resText">{{ daysToTarget }}</span
+              >天
+            </p>
+          </el-card>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="材料換算">
+        <li>計算以目前的材料資源，最多可產出幾個各階級材料</li>
+        <div class="row">
+          <el-form :model="form" label-width="auto" style="max-width: 600px">
+            <el-form-item label="綠色材料">
+              <!-- <el-input v-model="form.green" /> -->
+              <el-input-number v-model="form.green" :min="1" validate-event />
+            </el-form-item>
+            <el-form-item label="藍色材料">
+              <!-- <el-input v-model="form.blue" /> -->
+              <el-input-number v-model="form.blue" :min="1" validate-event />
+            </el-form-item>
+            <el-form-item label="紫色材料">
+              <!-- <el-input v-model="form.purple" /> -->
+              <el-input-number v-model="form.purple" :min="1" validate-event />
+            </el-form-item>
+            <el-form-item label="金色材料">
+              <!-- <el-input v-model="form.gold" /> -->
+              <el-input-number v-model="form.gold" :min="1" validate-event />
+            </el-form-item>
+          </el-form>
+          <el-button type="primary" @click="btnCalculate2">開始計算</el-button>
+          <el-button type="warning" @click="btnClear2">清空</el-button>
+        </div>
+        <div class="row">
+          <el-card v-show="showres2" style="max-width: 480px">
+            <div>
+              每種材料最多可產出<br />
+              <p>
+                <span class="resText">{{ goldnum }}</span
+                >個金色材料
+              </p>
+              <p>
+                <span class="resText">{{ purplenum }}</span
+                >個紫色材料
+              </p>
+              <p>
+                <span class="resText">{{ bluenum }}</span
+                >個藍色材料
+              </p>
+              <p>
+                <span class="resText">{{ form.green }}</span
+                >個綠色材料
+              </p>
+            </div>
+          </el-card>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
