@@ -137,7 +137,6 @@ onMounted(async () => {
   // 設置螢幕尺寸變化監聽器
   window.addEventListener('resize', updateExpMarks)
   try {
-    // const response = await fetch('nextlevel.json')
     const response = await fetch(`${import.meta.env.BASE_URL}/nextlevel.json`)
     jsonData.value = await response.json()
   } catch (error) {
@@ -150,18 +149,18 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', updateExpMarks)
 })
 
-const form = reactive({
-  green: 188,
-  blue: 155,
-  purple: 44,
-  gold: 3,
-})
 // const form = reactive({
-//   green: 0,
-//   blue: 0,
-//   purple: 0,
-//   gold: 0,
+//   green: 188,
+//   blue: 155,
+//   purple: 44,
+//   gold: 3,
 // })
+const form = reactive({
+  green: 0,
+  blue: 0,
+  purple: 0,
+  gold: 0,
+})
 </script>
 
 <template>
