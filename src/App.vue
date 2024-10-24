@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive } from 'vue'
-import { onMounted } from 'vue'
+import { onMounted, onBeforeUnmount } from 'vue'
 const userLVL = ref(1)
 const userEXP = ref(0)
 const tarLVL = ref(60)
@@ -20,14 +20,13 @@ const jsonData = ref(null)
 // var jdata = null
 
 // const value = ref([30, 60])
-const marks = reactive({
+const marks_large = reactive({
   1: '1',
   10: '10',
   20: '20',
   30: '30',
   40: '40',
   50: '50',
-  // 60: '60',
   70: '70',
   79: '79',
   60: {
@@ -37,7 +36,20 @@ const marks = reactive({
     label: '60',
   },
 })
-const exp_marks = reactive({
+
+const marks_small = reactive({
+  1: '1',
+  20: '20',
+  40: '40',
+  79: '79',
+  60: {
+    style: {
+      color: '#1989FA',
+    },
+    label: '60',
+  },
+})
+const exp_marks_large = reactive({
   0: '0',
   10000: '10000',
   20000: '20000',
@@ -45,6 +57,27 @@ const exp_marks = reactive({
   40000: '40000',
   47300: '47300',
 })
+
+const exp_marks_small = reactive({
+  0: '0',
+  15000: '15000',
+  30000: '30000',
+  47300: '47300',
+})
+
+const marks = ref(marks_large) // 初始設置為桌面版
+const exp_marks = ref(exp_marks_large) // 初始設置為桌面版
+
+// 監控螢幕寬度變化，根據寬度切換 exp_marks
+const updateExpMarks = () => {
+  if (window.innerWidth < 768) {
+    marks.value = marks_small
+    exp_marks.value = exp_marks_small
+  } else {
+    marks.value = marks_large
+    exp_marks.value = exp_marks_large
+  }
+}
 
 const btnCalculate = () => {
   var user_level = parseInt(userLVL.value)
@@ -99,6 +132,10 @@ const btnClear2 = () => {
 }
 // let jsonData = null
 onMounted(async () => {
+  updateExpMarks() // 初始化時檢查寬度
+
+  // 設置螢幕尺寸變化監聽器
+  window.addEventListener('resize', updateExpMarks)
   try {
     // const response = await fetch('nextlevel.json')
     const response = await fetch(`${import.meta.env.BASE_URL}/nextlevel.json`)
@@ -106,6 +143,11 @@ onMounted(async () => {
   } catch (error) {
     console.error('Error fetching JSON:', error)
   }
+})
+
+// 在組件卸載前移除監聽器
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateExpMarks)
 })
 
 const form = reactive({
@@ -137,7 +179,8 @@ const form = reactive({
             >聯覺經驗表來源</a
           >
         </li>
-        <li>手機端可使用，但條會有點小醜</li>
+        <li>手機端可使用</li>
+        <hr />
         <div class="row">
           <div class="label">目前聯覺等級</div>
           <el-slider
@@ -191,8 +234,10 @@ const form = reactive({
           </el-card>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="材料換算">
+      <el-tab-pane label="武器、角色技能材料換算">
         <li>計算以目前的材料資源，最多可產出幾個各階級材料</li>
+        <li>材料資源指升級武器、角色技能的材料</li>
+        <hr />
         <div class="row">
           <el-form :model="form" label-width="auto" style="max-width: 600px">
             <el-form-item>
@@ -266,14 +311,9 @@ body {
   margin: 10px;
 }
 .container {
-  /* max-width: 800px; */
-  /* min-width: 1000px; */
   display: flex;
   justify-content: center;
-  /* padding-top: 100px; */
   padding: 100px 10px;
-  /* padding: 50px 100px; */
-  /* background-color: rgb(233, 233, 233); */
 }
 
 :deep(.el-tabs) {
@@ -329,16 +369,19 @@ body {
 
 .gold {
   color: #ffe65a;
-  /* background-color: rgb(60, 60, 60); */
+  font-weight: bold;
 }
 .purple {
   color: #ca6dff;
+  font-weight: bold;
 }
 .blue {
   color: #59b4d3;
+  font-weight: bold;
 }
 .green {
   color: #5cc35e;
+  font-weight: bold;
 }
 
 .mr-5 {
@@ -349,7 +392,6 @@ body {
 }
 .labeltext {
   font-size: 20px;
-  font-weight: bold;
   background-color: #232629;
   padding: 0 5px;
   border-radius: 5px;
@@ -361,5 +403,10 @@ body {
   padding: 4px 5px;
   border-radius: 5px;
   margin-right: 2px;
+}
+@media (min-width: 768px) {
+  :deep(.el-tabs) {
+    min-width: 800px;
+  }
 }
 </style>
