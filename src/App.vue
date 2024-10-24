@@ -4,7 +4,7 @@ import { onMounted, onBeforeUnmount } from 'vue'
 const userLVL = ref(1)
 const userEXP = ref(0)
 const tarLVL = ref(60)
-const res = ref('aaa')
+const res = ref(0)
 const showres = ref(false)
 const showres2 = ref(false)
 
@@ -84,14 +84,7 @@ const btnCalculate = () => {
   var user_exp = parseInt(userEXP.value)
   var target_level = parseInt(tarLVL.value)
 
-  console.log('使用者等級: ', jsonData.value[user_level - 1].lvl)
-  console.log('使用者目前等級滿條: ', jsonData.value[user_level - 1].nextlvl)
   let to_next = jsonData.value[user_level - 1].nextlvl - user_exp
-  console.log('再多少升級: ', to_next)
-
-  //先計算到60等還有幾等
-  console.log('使用者還差幾等可以60: ', target_level - user_level)
-
   let needloop = target_level - user_level - 1
   let needexp = to_next
   for (let i = user_level; i < needloop + user_level; ++i) {
@@ -130,7 +123,7 @@ const btnClear2 = () => {
   form.green = 0
   showres2.value = false
 }
-// let jsonData = null
+
 onMounted(async () => {
   updateExpMarks() // 初始化時檢查寬度
 
@@ -148,7 +141,7 @@ onMounted(async () => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateExpMarks)
 })
-
+// 自用數據
 // const form = reactive({
 //   green: 188,
 //   blue: 155,
@@ -324,7 +317,6 @@ body {
 }
 
 .row {
-  /* display: flex; */
   padding: 10px 0;
 }
 .row > .label {
@@ -344,20 +336,12 @@ body {
 }
 /* 背景BAR顏色 */
 :deep(.el-slider__runway.show-input) {
-  /* background-color: rgb(61, 135, 179); */
   background-color: #bfc0c4;
 }
 /* 節點顏色 */
 :deep(.el-slider__stop.el-slider__marks-stop) {
-  /* background-color: rgb(0, 98, 155); */
   background-color: #ececec;
 }
-
-/* .row > .input {
-  display: flex;
-  align-items: center;
-  margin-left: 5px;
-} */
 
 .resText {
   color: rgb(197, 56, 0);
