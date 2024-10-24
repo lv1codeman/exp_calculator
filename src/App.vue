@@ -229,6 +229,20 @@ const form = reactive({
       <el-tab-pane label="武器、角色技能材料換算">
         <li>計算以目前的材料資源，最多可產出幾個各階級材料</li>
         <li>材料資源指升級武器、角色技能的材料</li>
+        <li>
+          結果顯示<span class="blue">藍色材料</span>100個的話，代表我<span
+            class="green"
+            >綠色</span
+          >全換成<span class="blue">藍色</span>可以有100個
+        </li>
+        <li>
+          結果顯示<span class="purple">紫色材料</span>100個的話，代表我<span
+            class="green"
+            >綠色</span
+          >全換<span class="blue">藍色</span>再全換成<span class="purple"
+            >紫色</span
+          >可以有100個，以此類推。
+        </li>
         <li>貼心提醒:檢查一下有沒有物資箱</li>
         <hr />
         <div class="row">
