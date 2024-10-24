@@ -91,6 +91,10 @@ const btnCalculate2 = () => {
 }
 
 const btnClear2 = () => {
+  form.gold = 0
+  form.purple = 0
+  form.blue = 0
+  form.green = 0
   showres2.value = false
 }
 // let jsonData = null
@@ -133,7 +137,7 @@ const form = reactive({
             >聯覺經驗表來源</a
           >
         </li>
-        <li>暫不支援手機端使用，有空再說</li>
+        <li>手機端可使用，但條會有點小醜</li>
         <div class="row">
           <div class="label">目前聯覺等級</div>
           <el-slider
@@ -191,21 +195,29 @@ const form = reactive({
         <li>計算以目前的材料資源，最多可產出幾個各階級材料</li>
         <div class="row">
           <el-form :model="form" label-width="auto" style="max-width: 600px">
-            <el-form-item label="綠色材料">
-              <!-- <el-input v-model="form.green" /> -->
-              <el-input-number v-model="form.green" :min="1" validate-event />
+            <el-form-item>
+              <template #label>
+                <span class="labeltext gold">金色材料</span></template
+              >
+              <el-input-number v-model="form.gold" :min="0" validate-event />
             </el-form-item>
-            <el-form-item label="藍色材料">
-              <!-- <el-input v-model="form.blue" /> -->
-              <el-input-number v-model="form.blue" :min="1" validate-event />
+            <el-form-item>
+              <template #label>
+                <span class="labeltext purple">紫色材料</span></template
+              >
+              <el-input-number v-model="form.purple" :min="0" validate-event />
             </el-form-item>
-            <el-form-item label="紫色材料">
-              <!-- <el-input v-model="form.purple" /> -->
-              <el-input-number v-model="form.purple" :min="1" validate-event />
+            <el-form-item>
+              <template #label
+                ><span class="labeltext blue">藍色材料</span></template
+              >
+              <el-input-number v-model="form.blue" :min="0" validate-event />
             </el-form-item>
-            <el-form-item label="金色材料">
-              <!-- <el-input v-model="form.gold" /> -->
-              <el-input-number v-model="form.gold" :min="1" validate-event />
+            <el-form-item>
+              <template #label
+                ><span class="labeltext green">綠色材料</span></template
+              >
+              <el-input-number v-model="form.green" :min="0" validate-event />
             </el-form-item>
           </el-form>
           <el-button type="primary" @click="btnCalculate2">開始計算</el-button>
@@ -216,20 +228,24 @@ const form = reactive({
             <div>
               每種材料最多可產出<br />
               <p>
+                <span class="labeltext2 gold">金色材料</span>
                 <span class="resText">{{ goldnum }}</span
-                >個金色材料
+                >個
               </p>
               <p>
+                <span class="labeltext2 purple">紫色材料</span>
                 <span class="resText">{{ purplenum }}</span
-                >個紫色材料
+                >個
               </p>
               <p>
+                <span class="labeltext2 blue">藍色材料</span>
                 <span class="resText">{{ bluenum }}</span
-                >個藍色材料
+                >個
               </p>
               <p>
+                <span class="labeltext2 green">綠色材料</span>
                 <span class="resText">{{ form.green }}</span
-                >個綠色材料
+                >個
               </p>
             </div>
           </el-card>
@@ -250,8 +266,22 @@ body {
   margin: 10px;
 }
 .container {
-  padding: 50px 100px;
+  /* max-width: 800px; */
+  /* min-width: 1000px; */
+  display: flex;
+  justify-content: center;
+  /* padding-top: 100px; */
+  padding: 100px 10px;
+  /* padding: 50px 100px; */
   /* background-color: rgb(233, 233, 233); */
+}
+
+:deep(.el-tabs) {
+  padding: 0px;
+}
+
+:deep(.el-tabs--border-card > .el-tabs__content) {
+  padding: 25px;
 }
 
 .row {
@@ -265,7 +295,7 @@ body {
 }
 
 .el-slider {
-  width: 50%;
+  width: 95%;
   padding-left: 10px;
 }
 
@@ -292,5 +322,44 @@ body {
 
 .resText {
   color: rgb(197, 56, 0);
+  /* line-height: 32px; */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.gold {
+  color: #ffe65a;
+  /* background-color: rgb(60, 60, 60); */
+}
+.purple {
+  color: #ca6dff;
+}
+.blue {
+  color: #59b4d3;
+}
+.green {
+  color: #5cc35e;
+}
+
+.mr-5 {
+  margin-right: 5px;
+}
+.mr-10 {
+  margin-right: 10px;
+}
+.labeltext {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #232629;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+.labeltext2 {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #232629;
+  padding: 4px 5px;
+  border-radius: 5px;
+  margin-right: 2px;
 }
 </style>
