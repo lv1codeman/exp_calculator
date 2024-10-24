@@ -229,6 +229,7 @@ const form = reactive({
       <el-tab-pane label="武器、角色技能材料換算">
         <li>計算以目前的材料資源，最多可產出幾個各階級材料</li>
         <li>材料資源指升級武器、角色技能的材料</li>
+        <li>貼心提醒:檢查一下有沒有物資箱</li>
         <hr />
         <div class="row">
           <el-form :model="form" label-width="auto" style="max-width: 600px">
