@@ -402,6 +402,9 @@ body {
   margin-right: 2px;
 }
 @media (min-width: 768px) {
+  .container {
+    padding: 20px 10px;
+  }
   :deep(.el-tabs) {
     min-width: 800px;
   }
