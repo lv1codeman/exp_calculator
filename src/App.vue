@@ -319,7 +319,7 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  padding: 100px 10px;
+  padding: 50px 10px;
 }
 
 :deep(.el-tabs) {
