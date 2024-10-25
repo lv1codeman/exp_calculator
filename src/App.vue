@@ -171,7 +171,6 @@ const form = reactive({
             >聯覺經驗表來源</a
           >
         </li>
-        <li>手機端可使用</li>
         <hr />
         <div class="row">
           <div class="label">目前聯覺等級</div>
