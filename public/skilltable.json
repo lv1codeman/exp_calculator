@@ -1,0 +1,83 @@
+[
+  {
+    "level": 1,
+    "green": 2,
+    "blue": 0,
+    "purple": 0,
+    "gold": 0,
+    "boss_item": 0,
+    "money": 1500
+  },
+  {
+    "level": 2,
+    "green": 3,
+    "blue": 0,
+    "purple": 0,
+    "gold": 0,
+    "boss_item": 0,
+    "money": 2000
+  },
+  {
+    "level": 3,
+    "green": 0,
+    "blue": 2,
+    "purple": 0,
+    "gold": 0,
+    "boss_item": 0,
+    "money": 4500
+  },
+  {
+    "level": 4,
+    "green": 0,
+    "blue": 3,
+    "purple": 0,
+    "gold": 0,
+    "boss_item": 0,
+    "money": 6000
+  },
+  {
+    "level": 5,
+    "green": 0,
+    "blue": 0,
+    "purple": 3,
+    "gold": 0,
+    "boss_item": 0,
+    "money": 16000
+  },
+  {
+    "level": 6,
+    "green": 0,
+    "blue": 0,
+    "purple": 5,
+    "gold": 0,
+    "boss_item": 1,
+    "money": 30000
+  },
+  {
+    "level": 7,
+    "green": 0,
+    "blue": 0,
+    "purple": 0,
+    "gold": 1,
+    "boss_item": 1,
+    "money": 50000
+  },
+  {
+    "level": 8,
+    "green": 0,
+    "blue": 0,
+    "purple": 0,
+    "gold": 3,
+    "boss_item": 1,
+    "money": 70000
+  },
+  {
+    "level": 9,
+    "green": 0,
+    "blue": 0,
+    "purple": 0,
+    "gold": 6,
+    "boss_item": 1,
+    "money": 100000
+  }
+]

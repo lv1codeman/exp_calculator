@@ -7,6 +7,7 @@ const tarLVL = ref(60)
 const res = ref(0)
 const showres = ref(false)
 const showres2 = ref(false)
+const showres3 = ref(false)
 
 const daysToTarget = ref('')
 const expsToTarget = ref('')
@@ -16,7 +17,15 @@ const goldnum = ref(0)
 const purplenum = ref(0)
 const bluenum = ref(0)
 
+const goldnum3 = ref(0)
+const purplenum3 = ref(0)
+const bluenum3 = ref(0)
+const greennum3 = ref(0)
+const bossitemnum3 = ref(0)
+const moneynum3 = ref(0)
+
 const jsonData = ref(null)
+const jsonData2 = ref(null)
 // var jdata = null
 
 // const value = ref([30, 60])
@@ -110,18 +119,61 @@ const btnClear = () => {
 }
 
 const btnCalculate2 = () => {
-  bluenum.value = Math.floor(form.green / 3) + form.blue
-  purplenum.value = Math.floor(bluenum.value / 3) + form.purple
-  goldnum.value = Math.floor(purplenum.value / 3) + form.gold
+  bluenum.value = Math.floor(form2.green / 3) + form2.blue
+  purplenum.value = Math.floor(bluenum.value / 3) + form2.purple
+  goldnum.value = Math.floor(purplenum.value / 3) + form2.gold
   showres2.value = true
 }
 
 const btnClear2 = () => {
-  form.gold = 0
-  form.purple = 0
-  form.blue = 0
-  form.green = 0
+  form2.gold = 0
+  form2.purple = 0
+  form2.blue = 0
+  form2.green = 0
   showres2.value = false
+}
+
+const btnCalculate3 = () => {
+  const lvlgap = form3.tarlvl - form3.curlvl
+  goldnum3.value = 0
+  purplenum3.value = 0
+  bluenum3.value = 0
+  greennum3.value = 0
+  bossitemnum3.value = 0
+  moneynum3.value = 0
+  for (let i = form3.curlvl - 1; i < form3.tarlvl - 1; i++) {
+    goldnum3.value += jsonData2.value[i].gold
+    purplenum3.value += jsonData2.value[i].purple
+    bluenum3.value += jsonData2.value[i].blue
+    greennum3.value += jsonData2.value[i].green
+    bossitemnum3.value += jsonData2.value[i].boss_item
+    moneynum3.value += jsonData2.value[i].money
+  }
+
+  goldnum3.value = goldnum3.value * form3.skillnum
+  purplenum3.value = purplenum3.value * form3.skillnum
+  bluenum3.value = bluenum3.value * form3.skillnum
+  greennum3.value = greennum3.value * form3.skillnum
+  bossitemnum3.value = bossitemnum3.value * form3.skillnum
+  moneynum3.value = moneynum3.value * form3.skillnum
+
+  console.log(jsonData2.value[form3.curlvl - 1].money)
+  console.log('所需金色材料: ' + goldnum3.value)
+  console.log('所需紫色材料: ' + purplenum3.value)
+  console.log('所需藍色材料: ' + bluenum3.value)
+  console.log('所需綠色材料: ' + greennum3.value)
+  console.log('所需王物: ' + bossitemnum3.value)
+  console.log('所需貝幣: ' + moneynum3.value)
+  console.log(lvlgap)
+
+  showres3.value = true
+}
+
+const btnClear3 = () => {
+  form3.curlvl = 1
+  form3.tarlvl = 2
+  form3.skillnum = 0
+  showres3.value = false
 }
 
 onMounted(async () => {
@@ -132,6 +184,9 @@ onMounted(async () => {
   try {
     const response = await fetch(`${import.meta.env.BASE_URL}/nextlevel.json`)
     jsonData.value = await response.json()
+
+    const response2 = await fetch(`${import.meta.env.BASE_URL}/skilltable.json`)
+    jsonData2.value = await response2.json()
   } catch (error) {
     console.error('Error fetching JSON:', error)
   }
@@ -148,11 +203,16 @@ onBeforeUnmount(() => {
 //   purple: 44,
 //   gold: 3,
 // })
-const form = reactive({
+const form2 = reactive({
   green: 0,
   blue: 0,
   purple: 0,
   gold: 0,
+})
+const form3 = reactive({
+  curlvl: 1,
+  tarlvl: 2,
+  skillnum: 1,
 })
 </script>
 
@@ -225,7 +285,7 @@ const form = reactive({
           </el-card>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="武器、角色技能材料換算">
+      <el-tab-pane label="材料換算(武器、角色技能)">
         <li>計算以目前的材料資源，最多可產出幾個各階級材料</li>
         <li>材料資源指升級武器、角色技能的材料</li>
         <li>
@@ -245,30 +305,30 @@ const form = reactive({
         <li>貼心提醒:檢查一下有沒有物資箱</li>
         <hr />
         <div class="row">
-          <el-form :model="form" label-width="auto" style="max-width: 600px">
+          <el-form :model="form2" label-width="auto" style="max-width: 600px">
             <el-form-item>
               <template #label>
                 <span class="labeltext gold">金色材料</span></template
               >
-              <el-input-number v-model="form.gold" :min="0" validate-event />
+              <el-input-number v-model="form2.gold" :min="0" validate-event />
             </el-form-item>
             <el-form-item>
               <template #label>
                 <span class="labeltext purple">紫色材料</span></template
               >
-              <el-input-number v-model="form.purple" :min="0" validate-event />
+              <el-input-number v-model="form2.purple" :min="0" validate-event />
             </el-form-item>
             <el-form-item>
               <template #label
                 ><span class="labeltext blue">藍色材料</span></template
               >
-              <el-input-number v-model="form.blue" :min="0" validate-event />
+              <el-input-number v-model="form2.blue" :min="0" validate-event />
             </el-form-item>
             <el-form-item>
               <template #label
                 ><span class="labeltext green">綠色材料</span></template
               >
-              <el-input-number v-model="form.green" :min="0" validate-event />
+              <el-input-number v-model="form2.green" :min="0" validate-event />
             </el-form-item>
           </el-form>
           <el-button type="primary" @click="btnCalculate2">開始計算</el-button>
@@ -295,8 +355,86 @@ const form = reactive({
               </p>
               <p>
                 <span class="labeltext2 green">綠色材料</span>
-                <span class="resText">{{ form.green }}</span
+                <span class="resText">{{ form2.green }}</span
                 >個
+              </p>
+            </div>
+          </el-card>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="技能升級材料計算機">
+        <li>例：有2個LV5技能想要都升到8級，就輸入 5 8 2</li>
+        <hr />
+        <div class="row">
+          <el-form :model="form3" label-width="auto" style="max-width: 600px">
+            <el-form-item>
+              <template #label>
+                <span class="labeltext white">當前等級</span></template
+              >
+              <el-input-number
+                v-model="form3.curlvl"
+                :min="1"
+                :max="9"
+                validate-event
+              />
+            </el-form-item>
+            <el-form-item>
+              <template #label
+                ><span class="labeltext white">目標等級</span></template
+              >
+              <el-input-number
+                v-model="form3.tarlvl"
+                :min="1"
+                :max="10"
+                validate-event
+              />
+            </el-form-item>
+            <el-form-item>
+              <template #label>
+                <span class="labeltext white">技能數</span></template
+              >
+              <el-input-number
+                v-model="form3.skillnum"
+                :min="1"
+                validate-event
+              />
+            </el-form-item>
+          </el-form>
+          <el-button type="primary" @click="btnCalculate3">開始計算</el-button>
+          <el-button type="warning" @click="btnClear3">清空</el-button>
+        </div>
+        <div class="row">
+          <el-card v-show="showres3" style="max-width: 480px">
+            <div>
+              達成目標所需的材料<br />
+              <p>
+                <span class="labeltext2 gold">金色材料</span>
+                <span class="resText">{{ goldnum3 }}</span
+                >個
+              </p>
+              <p>
+                <span class="labeltext2 purple">紫色材料</span>
+                <span class="resText">{{ purplenum3 }}</span
+                >個
+              </p>
+              <p>
+                <span class="labeltext2 blue">藍色材料</span>
+                <span class="resText">{{ bluenum3 }}</span
+                >個
+              </p>
+              <p>
+                <span class="labeltext2 green">綠色材料</span>
+                <span class="resText">{{ greennum3 }}</span
+                >個
+              </p>
+              <p>
+                <span class="labeltext2 white">王物</span>
+                <span class="resText">{{ bossitemnum3 }}</span
+                >個
+              </p>
+              <p>
+                <span class="labeltext2 white">貝幣</span>
+                <span class="resText">{{ moneynum3 }}</span>
               </p>
             </div>
           </el-card>
@@ -361,6 +499,11 @@ body {
   color: rgb(197, 56, 0);
   /* line-height: 32px; */
   font-size: 20px;
+  font-weight: bold;
+}
+
+.white {
+  color: white;
   font-weight: bold;
 }
 
