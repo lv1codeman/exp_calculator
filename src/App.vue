@@ -166,6 +166,17 @@ const btnCalculate3 = () => {
   console.log('所需貝幣: ' + moneynum3.value)
   console.log(lvlgap)
 
+  tableData[0].gold = goldnum3.value
+  tableData[0].purple = purplenum3.value
+  tableData[0].blue = bluenum3.value
+  tableData[0].green = greennum3.value
+  tableData[0].bossitem = bossitemnum3.value
+  tableData[0].money = moneynum3.value
+
+  // console.log(tableData)
+  // console.log(tableData[0])
+  // console.log(tableData[0].gold)
+
   showres3.value = true
 }
 
@@ -214,12 +225,24 @@ const form3 = reactive({
   tarlvl: 2,
   skillnum: 1,
 })
+
+const tableData = reactive([
+  {
+    gold: goldnum3.value,
+    purple: purplenum3.value,
+    blue: bluenum3.value,
+    green: greennum3.value,
+    bossitem: bossitemnum3.value,
+    money: moneynum3.value,
+  },
+])
 </script>
 
 <template>
   <div class="container">
     <el-tabs type="border-card">
-      <el-tab-pane label="聯覺經驗計算機">
+      <el-tab-pane label="聯覺經驗">
+        <b>聯覺經驗計算機</b>
         <li>
           索拉指南活耀度獎勵2000exp + 體力獎勵1800exp =
           3800exp(每日可穩定取得的聯覺經驗)
@@ -285,7 +308,8 @@ const form3 = reactive({
           </el-card>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="材料換算(武器、角色技能)">
+      <el-tab-pane label="材料換算">
+        <b>材料換算(武器、角色技能)</b>
         <li>計算以目前的材料資源，最多可產出幾個各階級材料</li>
         <li>材料資源指升級武器、角色技能的材料</li>
         <li>
@@ -362,7 +386,8 @@ const form3 = reactive({
           </el-card>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="技能升級材料計算機">
+      <el-tab-pane label="材料計算">
+        <b>技能升級材料計算機</b>
         <li>例：有2個LV5技能想要都升到8級，就輸入 5 8 2</li>
         <hr />
         <div class="row">
@@ -402,6 +427,74 @@ const form3 = reactive({
           </el-form>
           <el-button type="primary" @click="btnCalculate3">開始計算</el-button>
           <el-button type="warning" @click="btnClear3">清空</el-button>
+        </div>
+        <div class="row">
+          <el-card class="tab3width" v-show="showres3">
+            <div>達成目標所需的材料<br /></div>
+            <el-table :data="tableData" style="width: 100%">
+              <el-table-column
+                fixed
+                prop="gold"
+                label="金色材料"
+                width="100"
+                align="center"
+              >
+                <template v-slot:header>
+                  <span class="labeltext3 gold">金色材料</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="purple"
+                label="紫色材料"
+                width="100"
+                align="center"
+              >
+                <template v-slot:header>
+                  <span class="labeltext3 purple">紫色材料</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="blue"
+                label="藍色材料"
+                width="100"
+                align="center"
+              >
+                <template v-slot:header>
+                  <span class="labeltext3 blue">藍色材料</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="green"
+                label="綠色材料"
+                width="100"
+                align="center"
+              >
+                <template v-slot:header>
+                  <span class="labeltext3 green">綠色材料</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="bossitem"
+                label="王物"
+                width="100"
+                align="center"
+              >
+                <template v-slot:header>
+                  <span class="labeltext3 white">王物</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="money"
+                label="貝幣"
+                width="100"
+                align="center"
+              >
+                <template v-slot:header>
+                  <span class="labeltext3 white">貝幣</span>
+                </template>
+              </el-table-column>
+            </el-table>
+          </el-card>
         </div>
         <div class="row">
           <el-card v-show="showres3" style="max-width: 480px">
@@ -448,9 +541,17 @@ const form3 = reactive({
 body {
   margin: 0;
 }
+.gold1 {
+  color: #ffe65a;
+  font-weight: bold;
+}
 </style>
 
 <style scoped>
+.gold1 {
+  color: #ffe65a;
+  font-weight: bold;
+}
 body {
   margin: 10px;
 }
@@ -544,6 +645,19 @@ body {
   border-radius: 5px;
   margin-right: 2px;
 }
+
+.labeltext3 {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #232629;
+  padding: 2px 2px;
+  border-radius: 5px;
+}
+
+.tab3width {
+  max-width: 650px;
+}
+
 @media (min-width: 768px) {
   .container {
     padding: 20px 10px;
@@ -551,5 +665,22 @@ body {
   :deep(.el-tabs) {
     min-width: 800px;
   }
+}
+
+@media (max-width: 768px) {
+  .tab3width {
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 375px) {
+  .tab3width {
+    max-width: 320px;
+  }
+}
+
+:deep(.el-table__inner-wrapper::before) {
+  /* 去除下边框 */
+  height: 0;
 }
 </style>
